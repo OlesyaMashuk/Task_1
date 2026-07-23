@@ -51,4 +51,43 @@ class TestBurger:
                            "Price: 900"
         assert expected_receipt == burger.get_receipt()
 
+    #удалить ингредиент
+    def test_remove_ingredient_from_burger(self):
+        burger = Burger()
+        database = Database()
+    
+        ing_1 = database.available_ingredients()[0]
+        ing_2 = database.available_ingredients()[1]
+        ing_3 = database.available_ingredients()[2]
+        
+        burger.add_ingredient(ing_1)
+        burger.add_ingredient(ing_2)
+        burger.add_ingredient(ing_3)
+        
+        assert len(burger.ingredients) == 3
+        assert burger.ingredients[1] == ing_2
+
+    #перемешать ингредиенты
+    def test_move_ingredient_in_burger(self):
+        burger = Burger()
+        database = Database()
+        
+        ing_1 = database.available_ingredients()[0]
+        ing_2 = database.available_ingredients()[1]
+        ing_3 = database.available_ingredients()[2]
+        
+        burger.add_ingredient(ing_1)
+        burger.add_ingredient(ing_2)
+        burger.add_ingredient(ing_3)
+        
+        burger.move_ingredient(2, 0)
+        
+        assert burger.ingredients[0] == ing_3
+        assert burger.ingredients[1] == ing_1
+        assert burger.ingredients[2] == ing_2
+
+
+
+    
+
         
